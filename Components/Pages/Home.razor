@@ -1,0 +1,75 @@
+﻿@page "/"
+@inject IJSRuntime JS
+@inject ImageService ImageService
+
+<PageTitle>Home</PageTitle>
+
+<div class="pageBG h-100">
+    <div class="container pt-2">
+        <h1>Custom Card Generator</h1>
+        <div class="row g-3">
+            <div class="col-12 col-md-5">
+                <EditForm Model="cardData" class="vstack gap-3">
+                    <div>
+                        <label>Title</label>
+                        <InputText @bind-Value="cardData.Title" class="form-control" placeholder="Title" />
+                    </div>
+                    <div>
+                        <label>Description</label>
+                        <InputTextArea @bind-Value="cardData.Description" class="form-control" rows="3" placeholder="Description" />
+                    </div>
+                    <div>
+                        <label>Background Image</label>
+                        <InputFile class="form-control" OnChange="HandleFileChange" />
+                        <span class="text-danger">@fileError</span>
+                    </div>
+                    <div>
+                        <label>Text Color</label>
+                        <input type="color" @bind-value="cardData.TextColor" class="form-control" />
+                    </div>
+                </EditForm>
+            </div>
+            <div class="col-12 col-md-7 mb-3">
+                <div class="user-card" 
+                     style="--custom-bg: url(@(cardData.ImageUrl ?? defaultBackground)); --text-color: @(cardData.TextColor ?? "#fefefe")">
+                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                        <div class="title">
+                            @(cardData.Title ?? "Title")
+                        </div>
+                        <div class="description">
+                            @(cardData.Description ?? "Description")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+    CardData cardData = new CardData();
+    string defaultBackground = "/images/BGMountain.jpg";
+    string fileError = string.Empty;
+
+    private async Task HandleFileChange(InputFileChangeEventArgs args)
+    {
+        if (args.FileCount < 1 || args.File.Size > ImageService.MaxFileSize)
+        {
+            cardData.ImageUrl = null;
+            fileError = "Please select a file that is less than 512KB";
+        }
+        else
+        {
+            cardData.ImageUrl = await ImageService.UploadImage(args.File);
+            fileError = string.Empty;
+        }
+
+    }
+
+    private class CardData
+    {
+        public string? Title { get; set; }  
+        public string? Description { get; set; } 
+        public string? ImageUrl { get; set; }
+        public string? TextColor { get; set; }
+    }
+}

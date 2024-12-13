@@ -1,0 +1,35 @@
+﻿<nav class="navbar navbar-expand-lg navStyle" data-bs-theme="dark">
+    <div class="container-xxl">
+        <a href="/" class="me-3">
+           <img src="/images/CF_Mark.png" height="40" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                        <i class="bi bi-house"></i>
+                        <span>Home</span>
+                    </NavLink>
+                </li>              
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Style
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/?style=rocket">Rocket Style</a></li>
+                        <li><a class="dropdown-item" href="/?style=mountain">Mountain Style</a></li>                       
+                        <li><a class="dropdown-item" href="/?style=fantasy">Fantasy Style</a></li>
+                    </ul>
+                </li>
+            </ul>
+          
+        </div>
+    </div>
+</nav>
+
+@code {
+    
+}

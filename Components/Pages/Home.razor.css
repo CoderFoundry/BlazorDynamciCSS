@@ -1,0 +1,45 @@
+﻿.user-card {
+    border: solid 1px #dedede;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 2rem 1rem;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: var(--custom-bg, url(/images/BGMountain.jpg)), linear-gradient(rgba(2,2,2,.3), rgba(0,0,0,.5));
+    background-blend-mode: overlay;
+    position: relative;
+    overflow: hidden;
+    height: 20rem;
+}
+
+    .user-card::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        backdrop-filter: blur(1px);
+        z-index: 1
+    }
+
+    .user-card .title {
+        position: relative;
+        z-index: 2;
+        font-family: Anton SC, sans-serif;
+        line-height: 3.5rem;
+        font-size: 3rem;
+        text-transform: uppercase;
+        color: var(--text-color, #fefefe);
+    }
+
+    .user-card .description {
+        position: relative;
+        z-index: 2;
+        font-size: 1.5rem;
+        color: var(--text-color, #fefefe);
+    }
+
+.pageBG {
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
